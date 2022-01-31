@@ -1,22 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ავტო ასოციატორი</title>
-	<!-- css -->
-	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>FI MANAGEMENT APP</title>
+  <!-- ცსს -->
+  <!-- <link rel="stylesheet" href="../static/style.css"> -->
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+  <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- css -->
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+
 </head>
-<body class="index">
-<!--  დეშბორდი -->
-<div class="dashboard">
+
+<body>
+
+  <div class="muck-up" style="display: block;">
+    <div class="overlay"></div>
+
+    <div class="top">
+      <div class="nav">
+        <!-- burger -->
+        <span class="ion-android-menu"></span>
+        <p>პირადი ფინანსური მენეჯმენტი</p>
+        <span class="ion-ios-more-outline"><i class="fas fa-sign-out-alt"></i>
+        </span>
+      </div>
 
 
-	
-</div>
+      <div class="user-profile">
+        <img src="../static/logo.png">
+        <div class="user-details">
+          <h4>{{name}}</h4>
+          <br>
+          <p>თანხა ანგარიშზე: <span class="balance"><b>{{balance}}</b></span></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="filter-btn ">
+      <a id="one" href="#"><i class="fas fa-money-bill-alt" style="padding: 10px;"></i></i></a>
+      <a id="two" href="#"><i class="fas fa-taxi" style="padding: 10px;"></i></a>
+      <a id="three" href="#"><i class="fas fa-hamburger" style="padding: 10px;"></i></a>
+      <a id="all" href="#"><i class="fas fa-expand"></i></a>
+      <span class="toggle-btn ion-android-funnel"></span>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bottom">
+
+      <div class="total">
+        <p class="b"> {{data["total"]}}ლ  </p>
+
+      </div>
+
+      <div class="title">
+        <h3>ჩემი ფინანსები</h3>
+        <small>
+          <!--   რამე  -->
+        </small>
+      </div>
+
+
+      <ul class="tasks">
+        <!-- ფინანსები -->
+
+        <!--  გადასახადები  -->
+        <li class="one red ">
+          <span class="task-title">კომუნალურები</span>
+          <span class="task-cat">{{data["credits"]['bills']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['bills']/data["total"])*100}}% </b></span> </span>
+        </li>
+
+        <!-- მეორე  მგზავრობა-->
+        <li class="two red ">
+          <span class="task-title">მგზავრობა</span>
+          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
+
+        </li>
+
+        <!-- მესამე  ჭამა-->
+        <li class="three red ">
+          <span class="task-title">საკვები</span>
+          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
+
+        </li>
+
+        <li class="four red ">
+          <span class="task-title">გართობა</span>
+          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
+
+        </li>
 
 
 
-	<script src="{{ url_for('static',filename='script.js') }}"></script>
+      </ul>
+    </div>
+    <br>
+    <i onclick="move()" class="fas fa-bars  a"></i>
+    <div class="dropdown">
+      <span>თქვენი ბალანსი: <span class="balance"><b>{{balance}}</b></span></span>
+    </div>
+    <i onclick="move()" class="fas fa-bars b"></i>
+    <div class="plus-minus">
+      <div class="minus">
+        <i onclick="move()"class="fas fa-minus-circle"></i>
+      </div>
+      <div class="plus">
+        <i onclick="move()" class="fas fa-plus-circle"></i>
+      </div>
+    </div>
+
+
+
+  
+  </div><!---end-->
+  <div class="content " style="display: none;">
+    <div class="overlay"></div>
+
+    <div class="top">
+     
+
+
+    </div>
+
+    
+    <div class="bottom">
+    
+    </div>
+     
+    <br>
+    <i class="fas fa-bars  a"></i>
+    <div class="dropdown">
+      <span>თქვენი ბალანსი: <span class="balance"><b>{{balance}}</b></span></span>
+    </div>
+    <i class="fas fa-bars b"></i>
+    <div class="plus-minus">
+      <div class="minus">
+        <i class="fas fa-minus-circle"></i>
+      </div>
+      <div class="plus">
+        <i class="fas fa-plus-circle"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <!-- <script src="../static/script.js"></script> -->
+  <script src="{{ url_for('static',filename='script.js') }}"></script>
+
 </body>
+
 </html>
