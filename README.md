@@ -1,6 +1,6 @@
 
 
-## FI_calc (financial calculator)
+## FI_calc (simple financial calculator)
 ----
 **პირადი ფინანსური მენეჯმენტის პროგრამა**
 
