@@ -32,7 +32,7 @@
         <!-- burger -->
         <span class="ion-android-menu"></span>
         <p>პირადი ფინანსური მენეჯმენტი</p>
-        <span class="ion-ios-more-outline"><i class="fas fa-sign-out-alt"></i>
+        <span class="ion-ios-more-outline"><i  class="fas fa-sign-out-alt"></i>
         </span>
       </div>
 
@@ -42,7 +42,8 @@
         <div class="user-details">
           <h4>{{name}}</h4>
           <br>
-          <p>თანხა ანგარიშზე: <span class="balance"><b>{{balance}}</b></span></p>
+          <h4 class="account-name">{{total}}</h4><span>ბიუჯეტის შეცვლა </span><i  onclick="Cname()"  class="fa-solid edit fa-pen-to-square"></i>
+          <br>
         </div>
       </div>
 
@@ -60,12 +61,12 @@
     <div class="bottom">
 
       <div class="total">
-        <p class="b"> {{data["total"]}}ლ  </p>
+        <p class="b"> {{total+balance}}ლ  </p>
 
       </div>
 
       <div class="title">
-        <h3>ჩემი ფინანსები</h3>
+        <h3>ჩემი ხარჯები:  <span style="color:red;"><b>{{totalcr}}ლ </b></span> </h3>
         <small>
           <!--   რამე  -->
         </small>
@@ -78,26 +79,25 @@
         <!--  გადასახადები  -->
         <li class="one red ">
           <span class="task-title">კომუნალურები</span>
-          <span class="task-cat">{{data["credits"]['bills']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['bills']/data["total"])*100}}% </b></span> </span>
+          <span class="task-cat">{{data["credits"]['bills']}} ლარი   <span style="color:red;"><b>{{((data["credits"]['bills']/totalcr)*100) | round(2) }}% </b></span> </span>
         </li>
 
         <!-- მეორე  მგზავრობა-->
         <li class="two red ">
           <span class="task-title">მგზავრობა</span>
-          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
+          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{((data["credits"]['transport']/totalcr)*100) | round(2) }}% </b></span> </span>
 
         </li>
 
         <!-- მესამე  ჭამა-->
         <li class="three red ">
           <span class="task-title">საკვები</span>
-          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
-
+          <span class="task-cat">{{data["credits"]['food']}} ლარი   <span style="color:red;"><b>{{((data["credits"]['food']/totalcr)*100) | round(2) }}% </b></span> </span>
         </li>
 
         <li class="four red ">
           <span class="task-title">გართობა</span>
-          <span class="task-cat">{{data["credits"]['transport']}} ლარი   <span style="color:red;"><b>{{(data["credits"]['transport']/data["total"])*100}}% </b></span> </span>
+          <span class="task-cat">{{data["credits"]['fun']}} ლარი   <span style="color:red;"><b>{{((data["credits"]['fun']/totalcr)*100)| round(2) }}%</b></span> </span>
 
         </li>
 
@@ -108,51 +108,95 @@
     <br>
     <i onclick="move()" class="fas fa-bars  a"></i>
     <div class="dropdown">
-      <span>თქვენი ბალანსი: <span class="balance"><b>{{balance}}</b></span></span>
+      <span>ჩემი შემოსავლები: <span class="balance"style="color:chartreuse;"><b>{{totaldb}}ლ</b></span></span>
     </div>
     <i onclick="move()" class="fas fa-bars b"></i>
     <div class="plus-minus">
-      <div class="minus">
-        <i onclick="move()"class="fas fa-minus-circle"></i>
+      <div class="minus" onclick="addC()">
+        <i class="fas fa-minus-circle"></i>
       </div>
-      <div class="plus">
-        <i onclick="move()" class="fas fa-plus-circle"></i>
+      <div class="plus" onclick="addD()">
+        <i  class="fas fa-plus-circle"></i>
       </div>
     </div>
 
 
 
   
-  </div><!---end-->
-  <div class="content " style="display: none;">
+  </div><!--- main page end-->
+<div class="content " style="display: none;">
     <div class="overlay"></div>
-
-    <div class="top">
-     
-
-
-    </div>
-
-    
-    <div class="bottom">
-    
-    </div>
-     
     <br>
-    <i class="fas fa-bars  a"></i>
-    <div class="dropdown">
-      <span>თქვენი ბალანსი: <span class="balance"><b>{{balance}}</b></span></span>
-    </div>
-    <i class="fas fa-bars b"></i>
-    <div class="plus-minus">
-      <div class="minus">
-        <i class="fas fa-minus-circle"></i>
+    <div class="input-place">
+      <i onclick="move()" class="fas fa-bars  a"></i>
+        <div class="dropdown">
+          <span>ჩემი შემოსავლები: <span class="balance"style="color:chartreuse;"><b>{{totaldb}}ლ</b></span></span>
+        </div>
+      <i onclick="move()" class="fas fa-bars b"></i>
+      <div class="plus-minus">
+
+        <div class="minus" onclick="addC()">
+          <i class="fas fa-minus-circle"></i>
+        </div>
+
+        <div class="plus"onclick="addD()">
+          <i class="fas fa-plus-circle"></i>
+        </div>
       </div>
-      <div class="plus">
-        <i class="fas fa-plus-circle"></i>
-      </div>
     </div>
-  </div>
+    
+
+  <!-- ჩემი შემოსავლები -->
+  <ul class="debits">
+    <li class="debit">
+      <span class="task-title">ხელფასი</span>
+      <span class="task-cat">{{data["debits"]['salary']}} ლარი   <span style="color:chartreuse;"><b>{{((data["debits"]['salary']/totaldb)*100 )|round(2) }}% </b></span> </span>
+    </li>
+    <li class="debit">
+      <span class="task-title">დანაზოგები</span>
+      <span class="task-cat">{{data["debits"]['savings']}} ლარი   <span style="max-width:3ch; color:chartreuse;"><b style="max-width:3ch; color:chartreuse;">{{((data["debits"]['savings']/totaldb)*100)| round(2) }}% </b></span> </span>
+    </li>
+    <li class="debit">
+      <span class="task-title">ნაჩუქარი ფული</span>
+      <span class="task-cat">{{data["debits"]['gift']}} ლარი   <span style="max-width:3ch; color:chartreuse;"><b style="max-width:3ch; color:chartreuse;">{{((data["debits"]['savings']/totaldb)*100)| round(2) }}% </b></span> </span>
+    </li>
+    <li class="debit">
+      <span class="task-title">სესხი</span>
+      <span class="task-cat">{{data["debits"]['lend']}} ლარი   <span style="max-width:3ch; color:chartreuse;"><b style="max-width:3ch; color:chartreuse;">{{((data["debits"]['savings']/totaldb)*100)| round(2) }}% </b></span> </span>
+    </li>
+  </ul>
+    
+</div><!--- content page end-->
+<div class="change" style="display: none;">
+  <center>
+        <div class="db"  > 
+          <form action="#" method="post">
+            <select id="debitsel"  name="dname"  required>
+              <option value="savings">დანაზოგები</option>
+              <option value="salary">ხელფასი</option>
+              <option value="lend">სესხი</option>
+              <option value="gift">ნაჩუქარი ფული</option>
+            </select>
+            <input name="dvalue" type="number" placeholder="debit value" required>
+            <button type="submit">add</button>
+          </form>
+            
+        </div>
+        <div class="cr"  > 
+          <form action="#" method="post">
+            <select id="creditsel"  name="cname" required >
+              <option value="bills">კომუნალურები</option>
+              <option value="transport">მგზავრობა</option>
+              <option value="food">საკვები</option>
+              <option value="fun">გართობა</option>
+            </select>
+            <input name="cvalue" type="number" placeholder="credit value" required>
+            <button type="submit">add</button>
+          </form>
+            
+        </div>
+  </center>
+</div>
 
   <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>

@@ -415,9 +415,70 @@ ul li.hang img {
   color: #e60965;
 }
 
+/* disabled */
 .main{
   display: none !important;
 }
+/* active */
 .active{
   display: block !important;
+}
+
+
+
+/* when  content active   */
+.input-place
+{
+  margin-top:80px !important;
+}
+.input-place .fa-bars.a,.input-place .fa-bars.b{
+  height: 50px ;
+  
+  top:24px !important;
+
+}
+.debits span{
+  color: white;
+  position: relative;
+}
+/* line */
+.debits::after {
+    content: "";
+    position: absolute;
+    height: 160px;
+    width: 1px;
+    background: white;
+    left: 25px;
+    top: 250px;
+    z-index: 1;
+}
+/* dots */
+.debits  li::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  z-index: 2;
+  background-color: chartreuse;
+  margin-top: 5px !important;
+}
+/* each debit */
+.debit{
+  margin-left: 70px !important;
+  margin-top: 10px !important;
+}
+
+/* change active db */
+
+.db, .cr{
+  width: 600px !important;
+  height: 600px;
+  margin-top: 300px !important;
+}
+
+.db input, .db button .db select,.cr input, .cr button, .cr select,.db select{
+  width: 150px ;
+  height: 30px ;
 }

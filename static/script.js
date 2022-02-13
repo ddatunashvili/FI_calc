@@ -36,13 +36,56 @@ $("#four").click(function () {
 
 
 // events
-
-var plus = document.querySelector(".plus")
-var minus = document.querySelector(".minus")
+var mockup = document.querySelector('.muck-up')
+var content = document.querySelector('.content')
 
 function move(){
-  document.querySelector('.muck-up').classList.add("main")
-  document.querySelector('.content').classList.add("active")
-  document.querySelector('.content').classList.add("muck-up")
-
+  if ("muck-up" == mockup.getAttribute("class")){
+    mockup.classList.add("main")
+    content.classList.add("active")
+    content.classList.add('muck-up')
+  }else{
+    mockup.classList.remove("main")
+    content.classList.remove("active")
+    content.classList.remove('muck-up')
+  }
 }
+
+
+
+// add debit
+var change = document.querySelector(".change")
+var changedb = document.querySelector(".change .db ")
+var changecr = document.querySelector(".change .cr ")
+var content = document.querySelector(".content")
+
+function addD(){
+  mockup.classList.add("main")
+  changecr.classList.add("main")
+  content.classList.remove("active")
+  change.classList.add("active")
+}
+function addC(){
+  mockup.classList.add("main")
+  changedb.classList.add("main")
+  content.classList.remove("active")
+  change.classList.add("active")
+}
+
+
+
+// edit
+function Cname(){
+
+var edit = document.querySelector(".edit")
+var accName = document.querySelector(".account-name")
+var user= document.querySelector(".user-details")
+
+  uname = accName.innerHTML
+  edit.classList.remove("fa-pen-to-square") 
+  edit.classList.remove("edit")
+  document.querySelector(".user-details i ").removeAttribute("onclick")
+  user.innerHTML += `<form action='#' method='post'> <input type='text' value='${uname}'name='totalb'></form>`
+}
+
+
