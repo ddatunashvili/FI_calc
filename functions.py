@@ -4,13 +4,13 @@ import requests
 
 def modify_data(name, mode="add", total=False, data=False):
     if mode == 'change':
-        res  =  requests.patch(f'http://ddatunashvili.herokuapp.com/data/{name}',{"total":str(total),"change":str(data) })
+        res  =  requests.patch(f'http://obscure-chamber-74286.herokuapp.com/data/{name}',{"total":str(total),"change":str(data) })
         return res.json()
     elif  mode == "del":
-        res  =  requests.delete(f'http://ddatunashvili.herokuapp.com/data/{name}')
+        res  =  requests.delete(f'http://obscure-chamber-74286.herokuapp.com/data/{name}')
         return f"account {name} has been deleted"
     elif  mode == "add":
-        res  =  requests.put(f'http://ddatunashvili.herokuapp.com/data/{name}',{"total":str(total),"change":str(data) })
+        res  =  requests.put(f'http://obscure-chamber-74286.herokuapp.com/data/{name}',{"total":str(total),"change":str(data) })
         return res.json()
     else:
         return "please enter correct attribute parameters"
@@ -20,7 +20,7 @@ def modify_data(name, mode="add", total=False, data=False):
 def get_data(name):
     # try:
         # usage get_data('name')["change"]
-        res = requests.get('http://ddatunashvili.herokuapp.com/'+f"data/{name}").json()
+        res = requests.get('http://obscure-chamber-74286.herokuapp.com/'+f"data/{name}").json()
         account_name = dict(res)["id"]
         change = eval( dict( res )["change"] )
         debits = change["debits"]
