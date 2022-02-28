@@ -1,2 +1,2 @@
-web: gunicorn run:app
-web: gunicorn database:app
+worker: python3 database.py
+worker: python3 run.py
