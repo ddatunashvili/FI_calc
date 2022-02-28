@@ -8,6 +8,9 @@ import requests
 from functions import *
 app = Flask(__name__)
 
+
+import database as datab
+
 # ტოკენი
 app.secret_key = "app" 
 
@@ -87,4 +90,5 @@ def main():
 
 
 if __name__ == "__main__":
-    app.run( port=80,debug=True) 
+    app.run( port=80,debug=True)
+     
