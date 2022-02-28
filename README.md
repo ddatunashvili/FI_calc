@@ -1,6 +1,6 @@
 
 
-## FI_calc (financial calculator)
+## FI_calc (financial calculator)   https://ddatunashvili.herokuapp.com/
 ----
 **პირადი ფინანსური მენეჯმენტის პროგრამა**
 
